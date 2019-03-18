@@ -109,7 +109,7 @@ int main()
     }
     cout << "删除前 ";
     ListTraverse_Sq(mylist);
-    cout << "请输入要删除的元素" << endl;
+    cout << "请输入要删除的元素位序" << endl;
     cin >> y;
     if (!ListDetect_Sq(mylist, y, x)) {
         cout << "删除失败" << endl;
