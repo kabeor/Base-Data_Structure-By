@@ -6,8 +6,7 @@ using namespace std;
 
 typedef struct
 {
-    /* data */
-    char* elem;
+    int* elem;
     int length;
     int listsize;
     int incrementsize;
@@ -15,8 +14,7 @@ typedef struct
 
 void InitList_Sq(SqList& L, int maxsize = LIST_INIT_SIZE, int incresize = LISTINCREMENT)
 {
-    L.elem = (char*)malloc(maxsize * sizeof(char));
-
+    L.elem = (int*)malloc(maxsize * sizeof(int));
     if (!L.elem)
         exit(1);
     L.length = 0;
@@ -29,26 +27,23 @@ int ListLength_Sq(SqList L)
     return L.length;
 }
 
-int LocateElem(SqList L, char e)
+int LocateElem(SqList L, int e)
 {
     for (int i = 0; i < L.length; i++) {
-        /* code */
         if (L.elem[i] == e)
             return i;
     }
     return -1;
 }
 
-bool ListInsert_Sq(SqList& L, int i, char e)
+bool ListInsert_Sq(SqList& L, int i, int e)
 {
     int j;
     if (i < 0 || i > L.length) {
-        /* code */
         return false;
     }
     if (L.length > L.listsize) {
-        /* code */
-        L.elem = (char*)realloc(L.elem, (L.listsize + L.incrementsize) * sizeof(char));
+        L.elem = (int*)realloc(L.elem, (L.listsize + L.incrementsize) * sizeof(int));
         if (!L.elem)
             exit(1);
         L.listsize += L.incrementsize;
@@ -60,21 +55,21 @@ bool ListInsert_Sq(SqList& L, int i, char e)
     return true;
 }
 
-bool ListDetect_Sq(SqList& L, int i, char& e)
+bool ListDetect_Sq(SqList& L, int i, int& e)
 {
     int j;
-    if (i < 0 || i > L.length)
+    if (i < 0 || i >= L.length)
         return false;
     if (L.length <= 0)
         return false;
     e = L.elem[i];
-    for (int j = i + 1; j <= L.length - 1; j++)
+    for (j = i + 1; j <= L.length - 1; j++)
         L.elem[j - 1] = L.elem[j];
     L.length--;
     return true;
 }
 
-bool GetElem_Sq(SqList L, int i, char& e)
+bool GetElem_Sq(SqList L, int i, int& e)
 {
     if (i < 0 || i > L.length)
         return false;
@@ -101,21 +96,22 @@ void DestroyList_Sq(SqList& L)
 
 int main()
 {
+    system("chcp 65001");
     SqList mylist;
     int i;
-    char x, a[] = { 65, 66, 67, 68, 69, 70, 71, 72, 73, 74 };
+    int x, y, a[] = { 65, 66, 67, 68, 69, 70, 71, 72, 73, 74 };
     InitList_Sq(mylist, 50, 10);
     for (i = 0; i < 10; i++) {
-        /* code */
         if (!ListInsert_Sq(mylist, i, a[i])) {
-            /* code */
             cout << "插入失败" << endl;
             return 0;
         }
     }
     cout << "删除前 ";
     ListTraverse_Sq(mylist);
-    if (!ListDetect_Sq(mylist, 4, x)) {
+    cout << "请输入要删除的元素" << endl;
+    cin >> y;
+    if (!ListDetect_Sq(mylist, y, x)) {
         cout << "删除失败" << endl;
         return 0;
     }
@@ -123,5 +119,7 @@ int main()
     cout << "删除后 ";
     ListTraverse_Sq(mylist);
     DestroyList_Sq(mylist);
+    getchar();
+    getchar();
     return 0;
 }
