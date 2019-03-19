@@ -10,7 +10,7 @@ typedef struct elem {
 class sqlist {
 public:
     vector<Seqlist_t> v;
-    int len; //长度
+    int len; 
     void init();
     void clear();
     bool is_empty();
@@ -45,17 +45,18 @@ int main()
     L.add_back(three);
     L.add_back(four);
 
-    cout << "Init elem" << endl;
+    cout<<"Init elem"<<endl;
     L.traverse();
-    cout << "Delect the last one" << endl;
+    cout<<"Delect the last one"<<endl;
     L.delete_back();
     L.traverse();
-    cout << "Delect the third elem" << endl;
+    cout<<"Delect the third elem"<<endl;
     L.delete_elem(2);
     L.traverse();
-    cout << "insert the fifth elem before the first one" << endl;
+    cout<<"insert the fifth elem before the first one"<<endl;
     L.insert_elem(four, 0);
     L.traverse();
+
 
     getchar();
     getchar();
