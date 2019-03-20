@@ -140,3 +140,147 @@ void DestroyList_Sq(SqList& L)
     L.length = 0;
 }
 ```
+
+## 二 Vector实现
+
+> Vector常用操作
+
+1. push_back 在数组的最后添加一个数据
+
+2. pop_back 去掉数组的最后一个数据
+
+3. at 得到编号位置的数据
+
+4. begin 得到数组头的指针
+
+5. end 得到数组的最后一个单元+1的指针
+
+6. front 得到数组头的引用
+
+7. back 得到数组的最后一个单元的引用
+
+8. max_size 得到vector最大可以是多大
+
+9. capacity 当前vector分配的大小
+
+10. size 当前使用数据的大小
+
+11. resize 改变当前使用数据的大小，如果它比当前使用的大，者填充默认值
+
+12. reserve 改变当前vecotr所分配空间的大小
+
+13. erase 删除指针指向的数据项
+
+14. clear 清空当前的vector
+
+15. rbegin 将vector反转后的开始指针返回(其实就是原来的end-1)
+
+16. rend 将vector反转构的结束指针返回(其实就是原来的begin-1)
+
+17. empty 判断vector是否为空
+
+18. swap 与另一个vector交换数据
+
+> 初始化
+
+只需将顺序表长度置零
+
+```cpp
+void sqlist::init()
+{
+    len = 0;
+}
+```
+
+> 清空 
+
+```c
+void sqlist::clear()
+{
+    v.clear();
+    len = 0;
+}
+```
+
+> 判断是否为空
+```c
+bool sqlist::is_empty()
+{
+    return (len == 0) ? true : false;
+}
+
+```
+
+> 获取数据
+
+```c
+Seqlist_t sqlist::get_elem(int i)
+{
+    return v.at(i);
+}
+```
+
+> 查找数据
+
+```c
+int sqlist::get_locate(Seqlist_t e)
+{
+    int i = 0;
+    for (i = 0; i < len; i++)
+        if (e.element == v.at(i).element)
+            break;
+    return (i != len) ? (i) : (-1);
+}
+```
+
+> 在尾部添加数据
+
+```c
+void sqlist::add_back(Seqlist_t e)
+{
+    v.push_back(e);
+    len++;
+}
+```
+
+> 删除最后一个数据
+
+```c
+void sqlist::delete_back()
+{
+    v.pop_back();
+    len--;
+}
+```
+
+> 指定位置插入数据
+
+```c
+void sqlist::insert_elem(Seqlist_t e, int i)
+{
+    v.insert(v.begin() + i, e);
+    len++;
+}
+```
+
+>删除指定位置数据
+
+```c
+void sqlist::delete_elem(int i)
+{
+    v.erase(v.begin() + i);
+    len--;
+}
+```
+
+>遍历数据
+
+```c
+void sqlist::traverse()
+{
+    cout << "The element is ";
+    for (int i = 0; i < len; i++)
+        cout << v.at(i).element << ' ';
+    cout << endl;
+}
+```

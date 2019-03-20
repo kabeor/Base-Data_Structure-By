@@ -10,7 +10,7 @@ typedef struct elem {
 class sqlist {
 public:
     vector<Seqlist_t> v;
-    int len; 
+    int len;
     void init();
     void clear();
     bool is_empty();
@@ -45,18 +45,17 @@ int main()
     L.add_back(three);
     L.add_back(four);
 
-    cout<<"Init elem"<<endl;
+    cout << "Init elem" << endl;
     L.traverse();
-    cout<<"Delect the last one"<<endl;
+    cout << "Delect the last one" << endl;
     L.delete_back();
     L.traverse();
-    cout<<"Delect the third elem"<<endl;
+    cout << "Delect the third elem" << endl;
     L.delete_elem(2);
     L.traverse();
-    cout<<"insert the fifth elem before the first one"<<endl;
+    cout << "insert the fifth elem before the first one" << endl;
     L.insert_elem(four, 0);
     L.traverse();
-
 
     getchar();
     getchar();
@@ -73,18 +72,22 @@ void sqlist::clear()
     v.clear();
     len = 0;
 }
+
 bool sqlist::is_empty()
 {
     return (len == 0) ? true : false;
 }
+
 int sqlist::length()
 {
     return len;
 }
+
 Seqlist_t sqlist::get_elem(int i)
 {
     return v.at(i);
 }
+
 int sqlist::get_locate(Seqlist_t e)
 {
     int i = 0;
@@ -93,10 +96,12 @@ int sqlist::get_locate(Seqlist_t e)
             break;
     return (i != len) ? (i) : (-1);
 }
+
 Seqlist_t sqlist::get_last(int i)
 {
     return v.at(i - 1);
 }
+
 Seqlist_t sqlist::get_next(int i)
 {
     return v.at(i + 1);
@@ -107,6 +112,7 @@ void sqlist::add_back(Seqlist_t e)
     v.push_back(e);
     len++;
 }
+
 void sqlist::delete_back()
 {
     v.pop_back();
@@ -118,11 +124,13 @@ void sqlist::insert_elem(Seqlist_t e, int i)
     v.insert(v.begin() + i, e);
     len++;
 }
+
 void sqlist::delete_elem(int i)
 {
     v.erase(v.begin() + i);
     len--;
 }
+
 void sqlist::traverse()
 {
     cout << "The element is ";
